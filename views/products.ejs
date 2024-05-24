@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-size: cover;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXYZ5jgPICvdS2vlXtXED-AUqr6reQxPgoA&s);
+        }
+        #cbody{
+            background-color: transparent;
+        }
+        img {
+            height: 150px;
+        }
+        
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body style="background-color: rgb(241, 239, 239);">
+    <h1 class="text-center"><u>All Products</u></h1>
+    <div class="row p-0 m-0 justify-content-between">
+        <div class="col-sm-2">
+            <form action="/products" method="get">
+                <select class="bg-secondary rounded-3 border border-1 border-dark" name="category" onchange="this.form.submit()">
+                    <option disabled selected>Select Category</option>
+                    <option value="">All Categories</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Shoes">Shoes</option>
+                    <option value="Clothes">Clothes</option>
+                </select>
+            </form>
+        </div>
+        <div class="col-sm-2 text-center"><a href="/">Back to home</a></div>
+    </div>
+    <hr>
+    <div class="container">
+
+    <div class="row p-0 m-0">
+        <% if (myAllProducts) { %>
+            <%myAllProducts.forEach((product)=> { %>
+                <div class="col-sm-2 mt-4">
+                    <div class="card" style="width: 100%;">
+                        <div class="border-bottom overflow-hidden">
+                            <img src="<%=product.productImage %>" class="card-img-top" alt="Product Image">
+                        </div>
+                        <div class="card-body text-center" id="cbody">
+                            <h5 class="card-title text-center">
+                                <%=product.productName %>
+                            </h5>
+                            <p class="description">
+                                <%=product.desc %>
+                            </p>
+                            <h6 class="description text-center">
+                                <%=`Rs: ${product.price}` %>
+                            </h6>
+                            <a class="btn btn-primary" href="/cart/<%= product._id %>">Add to cart</a>
+
+                            <!-- <a class="btn btn-warning" href="/edit/<%= product._id %>">Edit</a> -->
+                            <!-- <a class="btn btn-danger" href="/delete/<%= product._id %>">Delete</a> -->
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } %>
+
+    </div>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
